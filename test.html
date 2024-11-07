@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<Html>
+    <head>
+        <title>sdsdsg
+        </title>
+        <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" src="style.css">
+
+<style>
+            html{
+                height:100%;
+                width: 100%;
+            }
+            #test{
+                width: 100px;
+                height:100px;
+                top:100px;
+                left:100px;
+                background-color: grey;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="test"></div>
+
+
+
+        <script>
+            //document.getElementById("test").innerHTML = "test";
+            
+            class gameObject{
+                constructor(name,isStatic,pos,vel,acc,statCoef,mass,otherthing){
+                    this.name = name;
+                    this.static=isStatic;
+                    thos.pos=pos;
+                    this.vel=vel;
+                    this.acc=acc;
+                    this.statCoef=statCoef;
+                    this.mass=mass;
+                    this.otherthing=otherthing;
+                }
+            }
+            
+           let obj1 = new gameObject("test",false,{"x":100,"y":100},{"x":3,"y":0,"d":90},{"mag":0,"d":0},"0","0","0");
+           let goober = "0"
+           document.getElementById("test").innerHTML=goober;
+           const fps=2
+//attempt 1 at procesing
+let updateQueue = [obj1];
+
+const pocessInterval = setInterval(()=>{
+    goober++;
+    
+/*
+    Step1: preform action trigers
+    Step2: process movement
+    |?-> Just iterate over movement queue, movement will be executed in order as in the queue
+    Step3: update movment as needed
+    |?-> change vel, acc, so on
+    Step4: check for collitions
+    |-> Set up action trigers for next frame
+    Step5: 
+    Step6 :Draw the screen
+    |-> for future, only change changed things unless that is already what happens
+*/
+//STEP 2:
+    for(pos in updateQueue){
+        //change x pos
+        let xDist = updateQueue[pos].vel.x;
+        updateQueue[pos].pos.x+=xDist;
+
+        //change y pos
+        let yDist = updateQueue[pos].vel.y;
+        updateQueue[pos].pos.y+=yDist;
+
+        document.getElementById(updateQueue[pos].name).left = updateQueue[pos].pos.x;
+        document.getElementById(updateQueue[pos].name).top = updateQueue[pos].pos.y
+    }
+
+
+
+
+},1000/fps);
+
+
+
+
+
+        </script>
+    </body>
+</Html>
